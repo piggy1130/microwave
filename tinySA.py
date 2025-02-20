@@ -159,7 +159,7 @@ class tinySA:
 	def pause(self):
 		self.send_command("pause\r")
 	
-	def marker_value(self, nr = 1):
+	def marker_value_freq(self, nr = 1):
 		self.send_command("marker %d\r" % nr)
 		data = self.fetch_data()
 		line = data.split('\n')[0]
@@ -167,7 +167,7 @@ class tinySA:
 		if line:
 			dl = line.strip().split(' ')
 			if len(dl) >= 4:
-				d = line.strip().split(' ')[3]
+				d = line.strip().split(' ')[2]
 				return float(d)
 		return 0
 
@@ -304,3 +304,4 @@ if __name__ == '__main__':
 	if opt.plot:
 		nv.logmag(s)
 		pl.show()
+		
